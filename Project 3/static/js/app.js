@@ -98,7 +98,7 @@ function createChart(id){
             title = "Subway";
             image = "static/images/chart/subway.png"
             break;
-          case "Wendy's":
+          case "Wendys":
             color= "rgb(221, 20, 56)";
             title = "Wendys";
             image = "static/images/chart/Wendys.png"
@@ -108,7 +108,6 @@ function createChart(id){
             x: toptenScores,
             y: toptenProvince,
             text: labels,
-            // marker: {color: 'rgb(106, 83, 184)'},
             marker: {color: color},
             type:"bar",
             orientation: "h"
@@ -150,6 +149,30 @@ function createChart(id){
 function createScatter(id){
     d3.json("data/third.json").then((data) => {
         var foodChain = data.data;
+        var color = []
+        switch(id){
+          case "Burger King":
+            //var color = '#185494';
+            color.push('#185494');
+            break;
+          case "Taco Bell":
+            //var color = "#682a8d";
+            color.push('#682a8d');
+            break;
+          case "McDonalds":
+            //var color = "#ffc72c";
+            color.push('#ffc72c');
+            break;
+          case "Subway":
+            //var color = "#008c15";
+            color.push('#008c15');
+            break;
+          case "Wendys":
+            //var color = "#dd1438";
+            color.push('#dd1438');
+            break;
+        } 
+        console.log(color)
         var province=[], pairs = [], one = [], two = [];
         foodChain.forEach((item)=> {
             province.push(item.Name); 
@@ -178,34 +201,63 @@ function createScatter(id){
             pairs.push([ratio, poverty])
 
         })
+        
         var options={
-        series: [{
-          name: "SAMPLE A",
-          data: pairs}],
+          series: [{
+            name: "SAMPLE A",
+            data: pairs
+            }],
           chart: {
-          height: 350,
-          type: 'scatter',
-          zoom: {
-            enabled: true,
-            type: 'xy'
-          }
-        },
-
-        xaxis: {
-          tickAmount: 10,
-          labels: {
-            formatter: function(val) {
-              return parseFloat(val).toFixed(1)
+            height: 350,
+            type: 'scatter',
+            zoom: {
+              enabled: true,
+              type: 'xy'
+            }         
+            },
+          // markers: {
+          //   discrete: [{
+          //     seriesIndex: 0,
+          //     dataPointIndex: 4,
+          //     size: 100
+          //     }]
+          // },
+          colors: color,
+          title: {
+            text: "Restaurants by Poverty Rate",
+            align: "center",
+            style: {
+              fontSize:  '20px',
+              fontFamily:  '"Open Sans", verdana, arial, sans-serif'
+              
             }
+          },
+          xaxis: {
+            tickAmount: 10,
+            title: {
+                text: "Restaurant Availability"},
+            labels: {
+              formatter: function(val) {
+                return parseFloat(val).toFixed(1)
+              }
+            },
+            min: 0,
+            max: 10
+
+          },
+          yaxis: {
+            tickAmount: 7,
+            title: {
+                text: "Poverty Rate"},
+            min: 8,
+            max: 24
           }
-        },
-        yaxis: {
-          tickAmount: 7
-        }
-        };
+          };
 
         var chart = new ApexCharts(document.querySelector("#splatter"), options);
+        // chart.zoomX(new (0.1), new (5));
         chart.render();
+
 
 
 })
@@ -216,6 +268,7 @@ function optionChanged(id) {
     // createDemographics(id);
     createChart(id);
     createScatter(id);
+
    };
 
  init();
