@@ -121,7 +121,7 @@ function createChart(id){
             };
         var layout = {
             title: "<b>"+"Locations By State"+"</b>",
-            height: 500,
+            height: 400,
             width: 600,
              "titlefont": {
                 "size": 20
@@ -272,14 +272,10 @@ function createScatter(id){
         // chart.zoomX(new (0.1), new (5));
         chart.render();
 
-
-
 })
 }
-
 function optionChanged(id) {
     console.log("In OptionChanged "+ id);
-    // createDemographics(id);
     createChart(id);
     createScatter(id);
 
