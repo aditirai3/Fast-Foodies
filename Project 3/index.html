@@ -20,7 +20,6 @@
 </head>
 
 <body>
-
   <div class="container">
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
@@ -28,8 +27,34 @@
         <p>Use the interactive charts below to explore the dataset</p>
       </div>
     </div>
+    <!-- Added another row -->
     <div class="row">
-      <div class="col-md-3">
+     <div class="col-md-3">
+       <div class="well">
+        <h4>TOP 5 : </h4>
+        <select id="selDataset" onchange="optionChanged(this.value)"></select>
+       </div>
+      </div>
+      <div class="col-md-9">
+       <div class="panel panel-primary">
+         <div class="panel-heading">
+           <h3 class="panel-title">General Info</h3>
+         </div>
+        <div id="sample-metadata" class="panel-body">
+        <p>As food trends quickly shift to healthier options,
+           it appears that the fast food industry is keeping up the pace.
+           This booming industry wins the hearts of 50 million Americans every day.
+           The current generation of kids are growing up in a time where fast food can be inexpensive
+           and healthy. Having already seen improvements in the past 4 years, it's exciting to see where
+           the industry will be in the coming years. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End here -->
+
+    <div class="row">
+      <!-- <div class="col-md-3">
         <div class="well">
           <h4>TOP 5 : </h4>
           <select id="selDataset" onchange="optionChanged(this.value)"></select>
@@ -40,7 +65,7 @@
           </div>
           <div id="sample-metadata" class="panel-body"></div>
         </div>
-      </div>
+      </div> -->
       <div class="col-md-5">
         <div id="bar"></div>
       </div>
@@ -71,10 +96,7 @@
 
   <!-- Marker Cluster JS -->
   <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
-  
-
-
-  
+    
 </body>
 
 </html>
