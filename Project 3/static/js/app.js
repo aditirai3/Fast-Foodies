@@ -247,7 +247,7 @@ function createScatter(id){
                 text: "Restaurant Availability"},
             labels: {
               formatter: function(val) {
-                return parseFloat(val).toFixed(1)
+                return parseFloat(val)
               }
             },
             min: 0,
@@ -260,7 +260,7 @@ function createScatter(id){
                 text: "Poverty Rate"},
             labels: {
                 formatter: function(val) {
-                return parseInt(val).toFixed(1)
+                return parseInt(val)
                   }
                 },
             min: 8,
