@@ -54,6 +54,8 @@ function createChart(id){
         results=arrCount(province);
         states=results[0];
         scores=results[1];
+
+        
         var scoresMap = {};
         //Sort the States with respect to the number of restaurants
         scores.forEach(function(el, i) {
@@ -63,14 +65,19 @@ function createChart(id){
         states.sort(function(a, b) {
              return scoresMap[b] - scoresMap[a];
         });
-
+       
         //Top ten locations 
         sorted_scores=scores.sort(function(a,b){return b-a;});
+         //Percent of  restaurant locations 
+         totals = sorted_scores.reduce((pv, cv) => pv + cv, 0);
+         var percent = Object.keys(sorted_scores).map(k => ({[k] : (sorted_scores[k]/totals * 100).toFixed(2)}));
+         console.log("scores :",sorted_scores)
+         console.log("percent :",percent)
         var toptenProvince = states
                             .slice(0, 10)
                             .reverse()
                             .map(st => st);
-        var toptenScores= scores
+        var toptenScores= scores 
                            .slice(0, 10)
                            .reverse();
                         //    .sort(function(a,b){return b-a;});
@@ -142,7 +149,7 @@ function createChart(id){
               }
             ],
          };
-        Plotly.newPlot("bar", [trace], layout)
+        Plotly.newPlot("bar", [trace], layout, {displayModeBar: false})
     })
 }
 
@@ -185,7 +192,7 @@ function createScatter(id){
                   break;
                 case "Taco Bell":
                   var count= item.TB;
-                  break;
+                  break; 
                 case "McDonalds":
                   var count= item.McDonalds;
                   break;
@@ -201,7 +208,6 @@ function createScatter(id){
             pairs.push([ratio, poverty])
 
         })
-        
         var options={
           series: [{
             name: "SAMPLE A",
@@ -213,6 +219,9 @@ function createScatter(id){
             zoom: {
               enabled: true,
               type: 'xy'
+            },
+            toolbar: {
+              show: false
             }         
             },
           // markers: {
@@ -249,9 +258,14 @@ function createScatter(id){
             tickAmount: 7,
             title: {
                 text: "Poverty Rate"},
+            labels: {
+                formatter: function(val) {
+                return parseInt(val).toFixed(1)
+                  }
+                },
             min: 8,
             max: 24
-          }
+          },
           };
 
         var chart = new ApexCharts(document.querySelector("#splatter"), options);
@@ -291,10 +305,7 @@ function arrCount(states) {
   
     return [a, b];
   }
-  
- 
-//   var result = arrCount(arr);
-//   console.log('[' + result[0] + ']','[' + result[1] + ']')
+
 
 // Heatmap code
 // // create map object
