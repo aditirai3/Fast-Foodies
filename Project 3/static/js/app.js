@@ -121,8 +121,8 @@ function createChart(id){
             };
         var layout = {
             title: "<b>"+"Locations By State"+"</b>",
-            height: 400,
-            width: 600,
+            // height: 400,
+            // width: 400,
              "titlefont": {
                 "size": 20
               },
@@ -408,6 +408,26 @@ d3.json(food).then((response1) =>{
   myMap.addLayer(markers);
 
 })
+
+var legend = L.control({position: 'bottomleft'});
+legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend'),
+        places = ['McDonalds', "Burger King", "Wendys", "Subway", "Taco Bell"],
+        labels = ["static/images/mcdonalds.png", "static/images/bk.png", "static/images/wendys.png", "static/images/subway.jpg", "static/images/tb.png"];
+    var table = L.DomUtil.create('table', 'hello')
+    for (var i = 0; i < places.length; i++) {
+      if (i<3) {
+        table.innerHTML +=
+            "<tr><td><strong>" + places[i] + "</strong></td>" +(" <td><img src="+ labels[i] +" height='80' width='70'>") +"</td></tr>";
+      }
+      else {
+        table.innerHTML +=
+            "<tr><td><strong>" + places[i] + "</strong></td>" + (" <td><img src="+ labels[i] +" height='40' width='40'>") +'</td></tr>';
+      }
+    }
+    return table;
+};
+legend.addTo(myMap);
 };
 
 
