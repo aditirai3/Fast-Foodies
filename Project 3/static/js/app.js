@@ -121,8 +121,6 @@ function createChart(id){
             };
         var layout = {
             title: "<b>"+"Locations By State"+"</b>",
-            // height: 400,
-            // width: 400,
              "titlefont": {
                 "size": 20
               },
@@ -214,7 +212,7 @@ function createScatter(id){
             data: pairs
             }],
           chart: {
-            height: 350,
+            height: 400,
             type: 'scatter',
             zoom: {
               enabled: true,
@@ -268,7 +266,7 @@ function createScatter(id){
           },
           };
 
-        var chart = new ApexCharts(document.querySelector("#splatter"), options);
+        chart = new ApexCharts(document.querySelector("#splatter"), options);
         // chart.zoomX(new (0.1), new (5));
         chart.render();
 
@@ -277,6 +275,7 @@ function createScatter(id){
 function optionChanged(id) {
     console.log("In OptionChanged "+ id);
     createChart(id);
+    d3.selectAll("#splatter").html("");
     createScatter(id);
 
    };
