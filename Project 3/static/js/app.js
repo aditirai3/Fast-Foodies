@@ -208,7 +208,7 @@ function createScatter(id){
         })
         var options={
           series: [{
-            name: "SAMPLE A",
+            name: "Poverty Rate",
             data: pairs
             }],
           chart: {
