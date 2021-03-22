@@ -222,13 +222,16 @@ function createScatter(id){
               show: false
             }         
             },
-          // markers: {
-          //   discrete: [{
-          //     seriesIndex: 0,
-          //     dataPointIndex: 4,
-          //     size: 100
-          //     }]
-          // },
+          markers: {
+            size: 5,
+            discrete: [{
+              seriesIndex: 0,
+              dataPointIndex: 2,
+              fillColor: '#e3e3e3',
+              strokeColor: '#fff',
+              size: 10
+              }]
+          },
           colors: color,
           title: {
             text: "Restaurants by Poverty Rate",
@@ -242,7 +245,7 @@ function createScatter(id){
           xaxis: {
             tickAmount: 10,
             title: {
-                text: "Restaurant Availability"},
+                text: "Restaurant Availability per Million People"},
             labels: {
               formatter: function(val) {
                 return parseFloat(val)
@@ -255,7 +258,7 @@ function createScatter(id){
           yaxis: {
             tickAmount: 7,
             title: {
-                text: "Poverty Rate"},
+                text: "Poverty Rate (%)"},
             labels: {
                 formatter: function(val) {
                 return parseInt(val)
@@ -265,7 +268,7 @@ function createScatter(id){
             max: 24
           },
           };
-
+        console.log(options)
         chart = new ApexCharts(document.querySelector("#splatter"), options);
         // chart.zoomX(new (0.1), new (5));
         chart.render();
