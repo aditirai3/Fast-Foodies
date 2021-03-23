@@ -30,9 +30,12 @@
     <!-- Added a row to accomodate the dropdown & description-->
     <div class="row">
      <div class="col-md-3" id=box>
-       <div class="jumbotron mt-3 h-100 " >
-        <h5><b>Choose a restaurant: </b></h5>
-        <select id="selDataset" onchange="optionChanged(this.value)"></select>
+       <!-- <div class="jumbotron mt-3 h-100 " > -->
+        <div class="panel panel-primary mt-3 h-100">
+         <div class="panel-heading">
+        <h5 class="panel-title"><b>Choose A Restaurant: </b></h5></div>
+        <div id="sample-metadata" class="panel-body button-box h-100">
+        <select id="selDataset" onchange="optionChanged(this.value)"></select></div>
        </div>
       </div>
       <div class="col-md-9">
@@ -57,7 +60,6 @@
       <div class="col-md-6">
         <div id="bar"></div>
       </div>
-      <div class="row">
       <div class="col-md-6">
         <div id="splatter"></div>
       </div>

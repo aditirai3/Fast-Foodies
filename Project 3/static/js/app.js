@@ -124,6 +124,7 @@ function createChart(id){
              "titlefont": {
                 "size": 20
               },
+            height: 400,
             yaxis: {
                  tickmode: "linear",
              },
@@ -203,7 +204,7 @@ function createScatter(id){
               } 
             var ratio = (count/population*1000000)
             one.push(ratio)
-            pairs.push([ratio, poverty])
+            pairs.push([ratio, poverty, poverty])
 
         })
         var options={
@@ -213,24 +214,40 @@ function createScatter(id){
             }],
           chart: {
             height: 400,
-            type: 'scatter',
-            zoom: {
-              enabled: true,
-              type: 'xy'
-            },
+            type: 'bubble',
+            // zoom: {
+            //   enabled: true,
+            //   type: 'xy'
+            // },
             toolbar: {
               show: false
+
             }         
             },
-          markers: {
-            size: 5,
-            discrete: [{
-              seriesIndex: 0,
-              dataPointIndex: 2,
-              fillColor: '#e3e3e3',
-              strokeColor: '#fff',
-              size: 10
-              }]
+          dataLabels: {
+            enabled: false
+          },
+          tooltip:{
+            enabled: true,
+            x:{
+              show:true,
+              formatter: function(val) {
+                return parseFloat(val).toFixed(2)},
+            },
+            y:{
+              formatter: function(val) {
+                return parseFloat(val).toFixed(2)}
+            },
+            z:{
+              formatter: function(val) {
+                return ""},
+              title: ""
+            },
+            marker:{
+              show: false
+            }
+
+
           },
           colors: color,
           title: {
@@ -252,8 +269,8 @@ function createScatter(id){
               }
             },
             min: 0,
-            max: 10
-
+            max: 10,
+            tooltip: false
           },
           yaxis: {
             tickAmount: 7,
@@ -270,7 +287,6 @@ function createScatter(id){
           };
         console.log(options)
         chart = new ApexCharts(document.querySelector("#splatter"), options);
-        // chart.zoomX(new (0.1), new (5));
         chart.render();
 
 })
