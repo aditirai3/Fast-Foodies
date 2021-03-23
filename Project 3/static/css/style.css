@@ -9,10 +9,9 @@
   
 }
 
-.button-box {
-  min-height: 120px;
-} 
-
+/* #box {
+  min-height: 160px;
+} */
 h4{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
@@ -45,7 +44,7 @@ h3 {
 }
 
 .jumbotron {
-    border: 1px solid;
+	border: 1px solid;
     border-color: black;
 }
 
@@ -57,17 +56,8 @@ h3 {
 	width: 100%;
 }
 
-/*.js-plotly-plot{
-  border: 1px solid;
-  border-color: black;
-  width: 100%;
-}*/
-
 #splatter{
 	width: 100%;
-/*  border: 1px solid;
-  border-color: black;*/
-
 }
 
 .hello{
@@ -82,8 +72,4 @@ td {
 #mapdescr{
 	text-align: center;
 	font-style: italic
-}
-
-#selDataset{
-  width: 150px;
 }

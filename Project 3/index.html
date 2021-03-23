@@ -30,12 +30,9 @@
     <!-- Added a row to accomodate the dropdown & description-->
     <div class="row">
      <div class="col-md-3" id=box>
-       <!-- <div class="jumbotron mt-3 h-100 " > -->
-        <div class="panel panel-primary mt-3 h-100">
-         <div class="panel-heading">
-        <h5 class="panel-title"><b>Choose A Restaurant: </b></h5></div>
-        <div id="sample-metadata" class="panel-body button-box h-100">
-        <select id="selDataset" onchange="optionChanged(this.value)"></select><br><br>The selected restaurant will filter the bar and bubble plots below.</div>
+       <div class="jumbotron mt-3 h-100 " >
+        <h5><b>Choose a restaurant: </b></h5>
+        <select id="selDataset" onchange="optionChanged(this.value)"></select>
        </div>
       </div>
       <div class="col-md-9">
@@ -44,8 +41,12 @@
            <h3 class="panel-title">About This Project</h3>
          </div>
         <div id="sample-metadata" class="panel-body">
-        <p>Using a dataset of ~10K fast food restaurants, we isolated five of the most prominent chains.
-        We analyzed the dataset using the dashboard of visualizations below to identify the various densities: locations per state by chain, locations per million people with respect to poverty rates by chain, and locations by zip code with respect to population. Dataset used provided by <a href="https://www.kaggle.com/datafiniti/fast-food-restaurants" target="_blank">Datafiniti via Kaggle</a>. </p>
+        <p>As food trends quickly shift to healthier options,
+           it appears that the fast food industry is keeping up the pace.
+           This booming industry wins the hearts of 50 million Americans every day.
+           The current generation of kids are growing up in a time where fast food can be inexpensive
+           and healthy. Having already seen improvements in the past 4 years, it's exciting to see where
+           the industry will be in the coming years. </p>
         </div>
       </div>
     </div>
@@ -56,6 +57,7 @@
       <div class="col-md-6">
         <div id="bar"></div>
       </div>
+      <div class="row">
       <div class="col-md-6">
         <div id="splatter"></div>
       </div>
