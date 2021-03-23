@@ -231,8 +231,8 @@ function createScatter(id){
           	var ava = arrays[dataPointIndex][0]
     		return '<div class="arrow_box" style="background-color:'+ color + ';color:' + fcolor +
           ';font-family: Arial, sans-serif; font-size: 13px;fill-opacity: 1; font-weight:bold">' +
-      		'<span style="padding:5px"> Poverty Rate (%): ' + parseFloat(pov).toFixed(2) + '</span><br>' +
-      		'<span style="padding:5px"> RAMP: ' + parseFloat(ava).toFixed(2) + '</span><br>' +
+      		'<span style="padding:5px"> Poverty Rate (%): ' +'<span style="font-weight:normal">'+ parseFloat(pov).toFixed(2) + '</span></span><br>' +
+      		'<span style="padding:5px"> RAMP: ' +'<span style="font-weight:normal">'+ parseFloat(ava).toFixed(2) + '</span></span><br>' +
       		'</div>'
 			},
         },
