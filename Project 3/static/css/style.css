@@ -27,7 +27,7 @@ h4{
 
 h1 {
 	font-weight: bolder;
-	-webkit-text-stroke: 1px white;
+	-webkit-text-stroke: .5px white;
 }
 
 h3 {
@@ -79,7 +79,4 @@ td {
   width: 150px;
 }
 
-.apexcharts-tooltip {
-    background: white;
-    color: black;
-  }
+

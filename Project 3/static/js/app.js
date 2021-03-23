@@ -31,16 +31,6 @@ function init() {
 
 census = d3.csv("data/Census_data.csv")
 
-d3.json("data/third.json").then((third)=>{
-    var mcdonalds = [];
-      foodChain.forEach((item)=> {
-          i=item.properties;
-          if (FoodChain.indexOf(i.Big4) == '-1') {
-              FoodChain.push(i.Big4); 
-              }
-      })
-})
-
 function createChart(id){
   d3.json("data/fastfood.json").then((data) => {
       var foodChain = data.features;
@@ -71,7 +61,6 @@ function createChart(id){
        //Percent of  restaurant locations 
        var percent = [];
       totals = sorted_scores.reduce((pv, cv) => pv + cv, 0);
-      console.log("Totals :", totals)
       sorted_scores.forEach(function(score) {
           percent.push((score *100/totals).toFixed(2))
       }) 
@@ -122,7 +111,7 @@ function createChart(id){
           marker: {color: color},
           type:"bar",
           orientation: "h",
-          hovertemplate: '<b>Location</b>: %{x}<br>' +
+          hovertemplate: '<b>Locations</b>: %{x}<br>' +
                        '<b>Restaurant(%)</b>: %{text}<extra></extra>'
           };
       var layout = {
@@ -162,29 +151,30 @@ function createScatter(id){
   d3.json("data/third.json").then((data) => {
       var foodChain = data.data;
       var color = []
+      var fcolor = []
       switch(id){
         case "Burger King":
-          //var color = '#185494';
+          fcolor.push('white');
           color.push('#185494');
           break;
         case "Taco Bell":
-          //var color = "#682a8d";
+          fcolor.push('white');
           color.push('#682a8d');
           break;
         case "McDonalds":
-          //var color = "#ffc72c";
+          fcolor.push('black');
           color.push('#ffc72c');
           break;
         case "Subway":
-          //var color = "#008c15";
+          fcolor.push('white');
           color.push('#008c15');
           break;
         case "Wendys":
-          //var color = "#dd1438";
+          fcolor.push('white');
           color.push('#dd1438');
           break;
       } 
-      console.log(color)
+
       var province=[], pairs = [], one = [], two = [];
       foodChain.forEach((item)=> {
           province.push(item.Name); 
@@ -237,36 +227,13 @@ function createScatter(id){
           enabled: true,
           custom: function({series, seriesIndex, dataPointIndex, w}) {
           	var arrays = w.config.series[0].data
-          	console.log(arrays)
-          	arrays.forEach(function (data){
-          		console.log(data[0])
-          	})
           	var pov = series[seriesIndex][dataPointIndex]
           	var ava = arrays[dataPointIndex][0]
-    		return '<div class="arrow_box">' +
+    		return '<div class="arrow_box" style="background-color:'+ color + ';color:' + fcolor +'">' +
       		'<span style="padding:5px"> Poverty Rate (%): ' + parseFloat(pov).toFixed(2) + '</span><br>' +
-      		'<span style="padding:5px"> RAPM: ' + parseFloat(ava).toFixed(2) + '</span><br>' +
+      		'<span style="padding:5px"> RAMP: ' + parseFloat(ava).toFixed(2) + '</span><br>' +
       		'</div>'
 			},
-          // x:{
-          //   show:true,
-          //   formatter: function(val) {
-          //     return parseFloat(val).toFixed(2)},
-          // },
-          // y:{
-          //   formatter: function(val) {
-          //     return parseFloat(val).toFixed(2)}
-          // },
-          // z:{
-          //   formatter: function(val) {
-          //     return ""},
-          //   title: ""
-          // },
-          // marker:{
-          //   show: false
-          // }
-
-
         },
         colors: color,
         title: {
@@ -343,7 +310,6 @@ function arrCount(states) {
 // Heatmap code
 // // create map object
 function createMap(){
-console.log("try again")
 var myMap = L.map("map", {
 center: [37.0902, -95.7129],
 zoom: 7
@@ -357,17 +323,12 @@ zoomOffset: -1,
 id: "mapbox/light-v9",
 accessToken: API_KEY
 }).addTo(myMap);
-console.log("try 2")
 // Heatmap layer
 // Assign the Data json to a variable
 var geodata = "static/data/cities.json";
 // Read the data using D3
 
 d3.json(geodata).then((response) =>{
-console.log(response)
-
-console.log(response.features.length);
-
 var heatArray = [];
 
 for (var i = 0; i < response.features.length; i++) {
@@ -383,13 +344,11 @@ var heat = L.heatLayer(heatArray, {
   radius: 20,
   blur: 35
 }).addTo(myMap);
-console.log("test 1")
 });
 // switch case to set colors of heatmap
 
 // Marker layer
 var food = "static/data/fastfood.json";
-console.log(food)
 // Grab the data with d3
 d3.json(food).then((response1) =>{
 console.log(response1);
@@ -453,13 +412,9 @@ legend.onAdd = function (map) {
       labels = ["static/images/chart/mcdonalds.png", "static/images/chart/bk.png", "static/images/chart/wendys.png", "static/images/chart/subway.png", "static/images/chart/tb.png"];
   var table = L.DomUtil.create('table', 'hello')
   for (var i = 0; i < places.length; i++) {
-    if (i<3) {
+    if (i>=0) {
       table.innerHTML +=
           "<tr><td><strong>" + places[i] + "</strong></td>" +(" <td><img src="+ labels[i] +" height='40' width='40'>") +"</td></tr>";
-    }
-    else {
-      table.innerHTML +=
-          "<tr><td><strong>" + places[i] + "</strong></td>" + (" <td><img src="+ labels[i] +" height='40' width='40'>") +'</td></tr>';
     }
   }
   return table;
