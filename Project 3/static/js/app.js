@@ -55,6 +55,7 @@ function createChart(id){
       states=results[0];
       scores=results[1];
 
+<<<<<<< HEAD
       
       var scoresMap = {};
       //Sort the States with respect to the number of restaurants
@@ -129,6 +130,86 @@ function createChart(id){
           title: "<b>"+"Locations By State"+"</b>",
            "titlefont": {
               "size": 20
+=======
+        
+        var scoresMap = {};
+        //Sort the States with respect to the number of restaurants
+        scores.forEach(function(el, i) {
+            scoresMap[states[i]] = el;
+           });
+        
+        states.sort(function(a, b) {
+             return scoresMap[b] - scoresMap[a];
+        });
+       
+        //Top ten locations 
+        sorted_scores=scores.sort(function(a,b){return b-a;});
+         //Percent of  restaurant locations 
+         totals = sorted_scores.reduce((pv, cv) => pv + cv, 0);
+         var percent = Object.keys(sorted_scores).map(k => ({[k] : (sorted_scores[k]/totals * 100).toFixed(2)}));
+         console.log("scores :",sorted_scores)
+         console.log("percent :",percent)
+        var toptenProvince = states
+                            .slice(0, 10)
+                            .reverse()
+                            .map(st => st);
+        var toptenScores= scores 
+                           .slice(0, 10)
+                           .reverse();
+                        //    .sort(function(a,b){return b-a;});
+        // //Hover text
+         var labels = "locations";
+        // Build Bar charts 
+        switch(id){
+          case "Burger King":
+            color = "rgb(24, 84, 148)";
+            title = "Burger King";
+            image = "static/images/chart/bk.png"
+            break;
+          case "Taco Bell":
+            color= "rgb(104, 42, 141)";
+            title = "Taco Bell";
+            image = "static/images/chart/tb.png"
+            break;
+          case "McDonalds":
+            color= "rgb(255 199 44)";
+            title = "McDonald's";
+            image = "static/images/chart/Mcdonalds.png"
+            break;
+          case "Subway":
+            color= "rgb(0, 140, 21)";
+            title = "Subway";
+            image = "static/images/chart/subway.png"
+            break;
+          case "Wendys":
+            color= "rgb(221, 20, 56)";
+            title = "Wendys";
+            image = "static/images/chart/Wendys.png"
+            break;
+          }
+        var trace = {
+            x: toptenScores,
+            y: toptenProvince,
+            text: labels,
+            marker: {color: color},
+            type:"bar",
+            orientation: "h"
+            };
+        var layout = {
+            title: "<b>"+"Locations By State"+"</b>",
+             "titlefont": {
+                "size": 20
+              },
+            height: 400,
+            yaxis: {
+                 tickmode: "linear",
+             },
+            margin: {
+                l: 100,
+                r: 100,
+                t: 50,
+                b: 20
+>>>>>>> 9f6cb59b7819e1059faaacda48f8d48f4d399e5d
             },
           height: 400,
           yaxis: {
@@ -159,6 +240,7 @@ function createChart(id){
 }
 
 function createScatter(id){
+<<<<<<< HEAD
   d3.json("data/third.json").then((data) => {
       var foodChain = data.data;
       var color = []
@@ -243,6 +325,103 @@ function createScatter(id){
           y:{
             formatter: function(val) {
               return parseFloat(val).toFixed(2)}
+=======
+    d3.json("data/third.json").then((data) => {
+        var foodChain = data.data;
+        var color = []
+        switch(id){
+          case "Burger King":
+            //var color = '#185494';
+            color.push('#185494');
+            break;
+          case "Taco Bell":
+            //var color = "#682a8d";
+            color.push('#682a8d');
+            break;
+          case "McDonalds":
+            //var color = "#ffc72c";
+            color.push('#ffc72c');
+            break;
+          case "Subway":
+            //var color = "#008c15";
+            color.push('#008c15');
+            break;
+          case "Wendys":
+            //var color = "#dd1438";
+            color.push('#dd1438');
+            break;
+        } 
+        console.log(color)
+        var province=[], pairs = [], one = [], two = [];
+        foodChain.forEach((item)=> {
+            province.push(item.Name); 
+            var population = item.Population;
+            var poverty = item.Poverty
+            two.push(item.Poverty)
+            switch(id){
+                case "Burger King":
+                  var count= item.BK;
+                  break;
+                case "Taco Bell":
+                  var count= item.TB;
+                  break; 
+                case "McDonalds":
+                  var count= item.McDonalds;
+                  break;
+                case "Subway":
+                  var count= item.Subway
+                  break;
+                case "Wendys":
+                  var count= item.Wendys
+                  break;
+              } 
+            var ratio = (count/population*1000000)
+            one.push(ratio)
+            pairs.push([ratio, poverty, poverty])
+
+        })
+        var options={
+          series: [{
+            name: "Poverty Rate",
+            data: pairs
+            }],
+          chart: {
+            height: 400,
+            type: 'bubble',
+            // zoom: {
+            //   enabled: true,
+            //   type: 'xy'
+            // },
+            toolbar: {
+              show: false
+
+            }         
+            },
+          dataLabels: {
+            enabled: false
+          },
+          tooltip:{
+            enabled: true,
+            x:{
+              show:true,
+              formatter: function(val) {
+                return parseFloat(val).toFixed(2)},
+            },
+            y:{
+              formatter: function(val) {
+                return parseFloat(val).toFixed(2)}
+            },
+            z:{
+              formatter: function(val) {
+                return ""},
+              title: ""
+            },
+            marker:{
+              show: false
+            }
+
+
+>>>>>>> 9f6cb59b7819e1059faaacda48f8d48f4d399e5d
           },
           z:{
             formatter: function(val) {
@@ -284,6 +463,7 @@ function createScatter(id){
               text: "Poverty Rate (%)"},
           labels: {
               formatter: function(val) {
+<<<<<<< HEAD
               return parseInt(val)
                 }
               },
@@ -294,6 +474,31 @@ function createScatter(id){
       console.log(options)
       chart = new ApexCharts(document.querySelector("#splatter"), options);
       chart.render();
+=======
+                return parseFloat(val)
+              }
+            },
+            min: 0,
+            max: 10,
+            tooltip: false
+          },
+          yaxis: {
+            tickAmount: 7,
+            title: {
+                text: "Poverty Rate (%)"},
+            labels: {
+                formatter: function(val) {
+                return parseInt(val)
+                  }
+                },
+            min: 8,
+            max: 24
+          },
+          };
+        console.log(options)
+        chart = new ApexCharts(document.querySelector("#splatter"), options);
+        chart.render();
+>>>>>>> 9f6cb59b7819e1059faaacda48f8d48f4d399e5d
 
 })
 }
@@ -435,6 +640,7 @@ myMap.addLayer(markers);
 
 var legend = L.control({position: 'bottomleft'});
 legend.onAdd = function (map) {
+<<<<<<< HEAD
   var div = L.DomUtil.create('div', 'info legend'),
       places = ['McDonalds', "Burger King", "Wendys", "Subway", "Taco Bell"],
       labels = ["static/images/chart/mcdonalds.png", "static/images/chart/bk.png", "static/images/chart/wendys.png", "static/images/chart/subway.png", "static/images/chart/tb.png"];
@@ -447,6 +653,21 @@ legend.onAdd = function (map) {
     else {
       table.innerHTML +=
           "<tr><td><strong>" + places[i] + "</strong></td>" + (" <td><img src="+ labels[i] +" height='40' width='40'>") +'</td></tr>';
+=======
+    var div = L.DomUtil.create('div', 'info legend'),
+        places = ['McDonalds', "Burger King", "Wendys", "Subway", "Taco Bell"],
+        labels = ["static/images/chart/mcdonalds.png", "static/images/chart/bk.png", "static/images/chart/wendys.png", "static/images/chart/subway.png", "static/images/chart/tb.png"];
+    var table = L.DomUtil.create('table', 'hello')
+    for (var i = 0; i < places.length; i++) {
+      if (i<3) {
+        table.innerHTML +=
+            "<tr><td><strong>" + places[i] + "</strong></td>" +(" <td><img src="+ labels[i] +" height='40' width='40'>") +"</td></tr>";
+      }
+      else {
+        table.innerHTML +=
+            "<tr><td><strong>" + places[i] + "</strong></td>" + (" <td><img src="+ labels[i] +" height='40' width='40'>") +'</td></tr>';
+      }
+>>>>>>> 9f6cb59b7819e1059faaacda48f8d48f4d399e5d
     }
   }
   return table;
