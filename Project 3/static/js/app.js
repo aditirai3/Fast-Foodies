@@ -244,8 +244,8 @@ function createScatter(id){
           	var pov = series[seriesIndex][dataPointIndex]
           	var ava = arrays[dataPointIndex][0]
     		return '<div class="arrow_box">' +
-      		'<span style="padding:5px"> Poverty Rate: ' + parseFloat(pov).toFixed(2) + '</span><br>' +
-      		'<span style="padding:5px"> Availability: ' + parseFloat(ava).toFixed(2) + '</span><br>' +
+      		'<span style="padding:5px"> Poverty Rate (%): ' + parseFloat(pov).toFixed(2) + '</span><br>' +
+      		'<span style="padding:5px"> RAPM: ' + parseFloat(ava).toFixed(2) + '</span><br>' +
       		'</div>'
 			},
           // x:{
