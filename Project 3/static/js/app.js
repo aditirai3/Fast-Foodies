@@ -375,7 +375,7 @@ for (var i = 0; i < response1.features.length; i++) {
       iconSize = [80, 70]
       break;
     case "Subway":
-      iconUrl = "static/images/subway.jpg";
+      iconUrl = "static/images/subway.png";
       iconSize = [40, 40]
       break;
     case "Wendys":
