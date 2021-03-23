@@ -78,3 +78,8 @@ td {
 #selDataset{
   width: 150px;
 }
+
+.apexcharts-tooltip {
+    background: white;
+    color: black;
+  }

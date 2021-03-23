@@ -235,23 +235,36 @@ function createScatter(id){
         },
         tooltip:{
           enabled: true,
-          x:{
-            show:true,
-            formatter: function(val) {
-              return parseFloat(val).toFixed(2)},
-          },
-          y:{
-            formatter: function(val) {
-              return parseFloat(val).toFixed(2)}
-          },
-          z:{
-            formatter: function(val) {
-              return ""},
-            title: ""
-          },
-          marker:{
-            show: false
-          }
+          custom: function({series, seriesIndex, dataPointIndex, w}) {
+          	var arrays = w.config.series[0].data
+          	console.log(arrays)
+          	arrays.forEach(function (data){
+          		console.log(data[0])
+          	})
+          	var pov = series[seriesIndex][dataPointIndex]
+          	var ava = arrays[dataPointIndex][0]
+    		return '<div class="arrow_box">' +
+      		'<span style="padding:5px"> Poverty Rate: ' + parseFloat(pov).toFixed(2) + '</span><br>' +
+      		'<span style="padding:5px"> Availability: ' + parseFloat(ava).toFixed(2) + '</span><br>' +
+      		'</div>'
+			},
+          // x:{
+          //   show:true,
+          //   formatter: function(val) {
+          //     return parseFloat(val).toFixed(2)},
+          // },
+          // y:{
+          //   formatter: function(val) {
+          //     return parseFloat(val).toFixed(2)}
+          // },
+          // z:{
+          //   formatter: function(val) {
+          //     return ""},
+          //   title: ""
+          // },
+          // marker:{
+          //   show: false
+          // }
 
 
         },
