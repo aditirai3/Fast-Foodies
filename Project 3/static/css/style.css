@@ -9,9 +9,10 @@
   
 }
 
-/* #box {
-  min-height: 160px;
-} */
+.button-box {
+  min-height: 120px;
+} 
+
 h4{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
@@ -72,4 +73,8 @@ td {
 #mapdescr{
 	text-align: center;
 	font-style: italic
+}
+
+#selDataset{
+  width: 150px;
 }

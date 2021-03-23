@@ -123,7 +123,7 @@ function createChart(id){
           type:"bar",
           orientation: "h",
           hovertemplate: '<b>Location</b>: %{x}<br>' +
-                       '<b>Restaurant(%)</b>: $%{text}<extra></extra>'
+                       '<b>Restaurant(%)</b>: %{text}<extra></extra>'
           };
       var layout = {
           title: "<b>"+"Locations By State"+"</b>",
