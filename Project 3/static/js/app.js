@@ -431,12 +431,12 @@ var legend = L.control({position: 'bottomleft'});
 legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend'),
         places = ['McDonalds', "Burger King", "Wendys", "Subway", "Taco Bell"],
-        labels = ["static/images/mcdonalds.png", "static/images/bk.png", "static/images/wendys.png", "static/images/subway.jpg", "static/images/tb.png"];
+        labels = ["static/images/chart/mcdonalds.png", "static/images/chart/bk.png", "static/images/chart/wendys.png", "static/images/chart/subway.png", "static/images/chart/tb.png"];
     var table = L.DomUtil.create('table', 'hello')
     for (var i = 0; i < places.length; i++) {
       if (i<3) {
         table.innerHTML +=
-            "<tr><td><strong>" + places[i] + "</strong></td>" +(" <td><img src="+ labels[i] +" height='80' width='70'>") +"</td></tr>";
+            "<tr><td><strong>" + places[i] + "</strong></td>" +(" <td><img src="+ labels[i] +" height='40' width='40'>") +"</td></tr>";
       }
       else {
         table.innerHTML +=
