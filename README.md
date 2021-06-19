@@ -1,2 +1,6 @@
 # Fast-Foodies
-Dashboard analyzing the density of five fast food restaurant chains using several JavaScript libraries and hosted on Python HTTP server. 
+A group project done with @pnisenson, @skunnath2020, and @cgrove3141. The objective was to analyze the relationship between population density and location of fast food restaurant chains in the US. 
+For our analysis, we took the lat long data of (McDonalds, Subway, Wendy's and Burger king) and  .
+using several Leaflet JavaScript libraries and
+Final files
+Created a visual dashboard (access via index.html) which is hosted on the Python HTTP server. 
